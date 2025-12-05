@@ -1,0 +1,22 @@
+=================
+Reflection Report
+=================
+
+Working with RPC in Go made me clearly see how much easier remote communication
+becomes compared to using raw socket programming. With sockets, you must manually
+manage connections, format messages, parse data, and handle low-level network details. In
+contrast, RPC hides most of this complexity by letting us call methods on a remote server as
+if they were local functions. This abstraction made the whole process feel more intuitive,
+especially when working with multiple operations like Add, Multiply, or Divide.
+
+During the lab, I encountered a few challenges that helped deepen my understanding.
+Handling timeouts was one of them, without setting time limits, the client might wait forever if
+the server is slow or unresponsive. Learning how to use client.Go() and the select
+statement to implement timeouts was useful for making the client more robust. Another
+challenge came from supporting multiple clients at the same time. Adding concurrency
+introduced the possibility of data races, especially when we added persistent state like
+lastResult. Using a mutex (sync.Mutex) ensured the server behaved correctly even
+when multiple RPC calls accessed shared data simultaneously.
+
+Overall, the lab demonstrated how RPC simplifies distributed system development while still
+exposing important real-world issues like synchronization and network reliability.
